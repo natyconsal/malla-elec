@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ingeniería en Electrónica</title>
+  <style>
+    body { font-family: sans-serif; background: #57869c; padding: 20px;color: hsl(237, 96%, 19%); }
+    h1{margin-top: 0;}
+    h2 { margin-top: 20px; }
+    .materia {
+      display: inline-block;
+      margin: 6px;
+      padding: 8px 12px;
+      border: 2px solid #158098;
+      border-radius: 6px;
+      background: #ebfaff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .materia:hover{
+      border: 2px solid #8ad2f9;
+      background: #d5ebf7;
+    }
+    .materia.aprobada {
+      background-color: #c8e6c9;
+      border-color: #77a379;
+    }
+    .materia.inactiva {
+      cursor: not-allowed;
+      background-color: #fcf1fb;
+      color: #aca3ab;
+      border-color: #ccc;
+      pointer-events: none;
+      text-decoration: none !important;
+    }
+    .malla {
+      display: flex;
+      gap: 30px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+    .grupo {
+      min-width: 200px;
+      background: #bcf2ff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .grupo h2 {
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+<h1>Ingeniería en Electrónica</h1>
+<p>Julieta Abril Consal - Inicio 2025</p>
+
+<div class="malla">
+  <div class="grupo">
+    <h2>CBC - 1er Año</h2>
+    <div class="materia" data-id="cbc-analisis">Análisis Matemático</div>
+    <div class="materia" data-id="cbc-algebra">Álgebra</div>
+    <div class="materia" data-id="cbc-fisica">Física</div>
+    <div class="materia" data-id="cbc-pc">Pensamiento Computacional</div>
+    <div class="materia" data-id="cbc-icse">Introducción al Conocimiento de la Sociedad y el Estado</div>
+    <div class="materia" data-id="cbc-ipc">Introducción al Pensamiento Científico</div>
+  </div>
+
+  <div class="grupo">
+    <h2>2do Año</h2>
+    <div class="materia" data-id="analisis2">Análisis Matemático II</div>
+    <div class="materia" data-id="fisica">Física de los Sistemas de Partículas</div>
+    <div class="materia" data-id="ing-elec">Introducción a la Ingeniería Electrónica</div>
+    <div class="materia" data-id="algo1">Algoritmos y Programación</div>
+    <div class="materia" data-id="algebra">Álgebra Lineal</div>
+    <div class="materia" data-id="elec-magne">Electricidad, Magnetismo y Calor</div>
+    <div class="materia" data-id="disp-elec">Introducción a los Dispositivos Electrónicos</div>
+    <div class="materia" data-id="sist-dig">Sistemas Digitales</div>
+  </div>
+
+  <div class="grupo">
+    <h2>3er Año</h2>
+    <div class="materia" data-id="prob-esta">Probabilidad y Estadística</div>
+    <div class="materia" data-id="siste">Señales y Sistemas</div>
+    <div class="materia" data-id="circui">Análisis de Circuitos</div>
+    <div class="materia" data-id="comu">Redes de Comunicaciones</div>
+    <div class="materia" data-id="plani">Planificación de Proyectos</div>
+    <div class="materia" data-id="circ-micro">Circuitos Microelectrónicos</div>
+    <div class="materia" data-id="estoca">Procesos Estocásticos</div>
+    <div class="materia" data-id="control">Control Automático</div>
+    <div class="materia" data-id="embebi">Taller de Sistemas Embebidos</div>
+  </div>
+
+  <div class="grupo">
+    <h2>4to Año</h2>
+    <div class="materia" data-id="quimica">Química y Electroquímica</div>
+    <div class="materia" data-id="electro">Electromagnetismo Aplicado</div>
+    <div class="materia" data-id="auto-control">Taller de Automatización y Control</div>
+    <div class="materia" data-id="proces-se">Taller de Procesamiento de Señales</div>
+    <div class="materia" data-id="semicond">Dispositivos Semiconductores</div>
+    <div class="materia" data-id="comu-dig">Taller de Comunicaciones Digitales</div>
+    <div class="materia" data-id="dis-circ">Taller de Diseño de Circuitos Electrónicos</div>
+    <div class="materia" data-id="hig y seg">Higiene y Seguridad</div>
+    <div class="materia" data-id="electiva1">Electiva I</div>
+  </div>
+
+  <div class="grupo">
+    <h2>5to Año</h2>
+    <div class="materia" data-id="ejer">Legislación y Ejercicio Profesional</div>
+    <div class="materia" data-id="gestion">Gestión de Proyectos Electrónicos</div>
+    <div class="materia" data-id="tesis1">Tesis o Trabajo Profesional I</div>
+    <div class="materia" data-id="electiva2">Electiva II</div>
+    <div class="materia" data-id="impacto">Impacto Social, Ambiental y Desarrollo Sustentables</div>
+    <div class="materia" data-id="tesis2">Tesis o Trabajo Profesional II</div>
+    <div class="materia" data-id="electiva3">Electiva III</div>
+</div>
+</div>
+<script>
+  // Correlativas: clave = materia, valor = array de materias prerequisito
+  const correlativas = {
+    "analisis2": ["cbc-analisis", "cbc-algebra", "cbc-pc", "cbc-fisica", "cbc-icse", "cbc-ipc"],
+    "fisica": ["cbc-analisis", "cbc-algebra", "cbc-pc", "cbc-fisica", "cbc-icse", "cbc-ipc"],
+    "ing-elec": ["cbc-analisis", "cbc-algebra", "cbc-pc", "cbc-fisica", "cbc-icse", "cbc-ipc"],
+    "algo1": ["cbc-analisis", "cbc-algebra", "cbc-pc", "cbc-fisica", "cbc-icse", "cbc-ipc"],
+    "algebra": ["cbc-analisis", "cbc-algebra", "cbc-pc", "cbc-fisica", "cbc-icse", "cbc-ipc"],
+    "comu": ["cbc-analisis", "cbc-algebra", "cbc-pc", "cbc-fisica", "cbc-icse", "cbc-ipc"],
+    "elec-magne": ["analisis2", "fisica"],
+    "disp-elec": ["ing-elec"],
+    "sist-dig": ["ing-elec"],
+    "prob-esta": ["analisis2", "algebra"],
+    "siste": ["analisis2", "algebra"],
+    "circui": ["ing-elec", "elec-magne"],
+    "plani": ["ing-elec"],
+    "circ-micro": ["disp-elec", "circui"],
+    "estoca": ["prob-esta", "siste"],
+    "control": ["elec-magne", "siste"],
+    "embebi": ["algo1", "disp-elec", "sist-dig"],
+    "quimica": ["elec-magne"],
+    "electro": ["circui"],
+    "auto-control": ["algo1", "control", "sist-dig"],
+    "proces-se": ["estoca"],
+    "semicond": ["disp-elec", "circui"],
+    "comu-dig": ["siste", "comu"],
+    "dis-circ": ["circ-micro", "electro"],
+    "hig y seg": ["plani", "circ-micro", "estoca", "control", "embebi"],
+    "electiva1": ["plani", "circ-micro", "estoca", "control", "embebi"],
+    "ejer": ["plani", "circ-micro", "estoca", "control", "embebi"],
+    "gestion": ["plani"],
+    "tesis1": ["plani", "auto-control", "embebi", "dis-circ"],
+    "electiva2": ["plani", "circ-micro", "estoca", "control", "embebi"],
+    "impacto": ["plani", "circ-micro", "estoca", "control", "embebi"],
+    "tesis2": ["tesis1"],
+    "electiva3": ["plani", "circ-micro", "estoca", "control", "embebi"]
+  };
+
+  const materias = document.querySelectorAll('.materia');
+
+  // Función para actualizar qué materias están activas/inactivas
+  function actualizarEstadoMaterias() {
+    materias.forEach(materia => {
+      const id = materia.dataset.id;
+      const prereqs = correlativas[id] || [];
+      const cumplidas = prereqs.every(pr => localStorage.getItem(pr) === '1');
+
+      if (cumplidas) {
+        materia.classList.remove('inactiva');
+        materia.style.pointerEvents = 'auto';
+        materia.style.opacity = '1';
+      } else {
+        materia.classList.add('inactiva');
+        materia.style.pointerEvents = 'none';
+        materia.style.opacity = '0.5';
+        materia.classList.remove('aprobada'); // si estaba marcada, desmarcarla porque no puede estar aprobada aún
+        localStorage.setItem(id, '0');       // y guardar que no está aprobada
+      }
+    });
+  }
+
+  // Inicialización: cargar estado guardado y actualizar estado materias
+  materias.forEach(materia => {
+    const id = materia.dataset.id;
+    const aprobado = localStorage.getItem(id);
+    if (aprobado === '1') materia.classList.add('aprobada');
+  });
+
+  actualizarEstadoMaterias();
+
+  // Agregar evento click para toggle aprobado y actualizar estado
+  materias.forEach(materia => {
+    materia.addEventListener('click', () => {
+      if (!materia.classList.contains('inactiva')) {
+        materia.classList.toggle('aprobada');
+        localStorage.setItem(materia.dataset.id, materia.classList.contains('aprobada') ? '1' : '0');
+        actualizarEstadoMaterias();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+
